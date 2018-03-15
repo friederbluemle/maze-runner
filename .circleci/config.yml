@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: bundle install
+      - run:
+          name: Run unit tests
+          command: rake test:unit
+      - run:
+          name: Run integration tests
+          command: rake test:integration
