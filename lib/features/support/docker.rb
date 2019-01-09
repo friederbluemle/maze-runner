@@ -45,7 +45,7 @@ def start_service(service, compose_file=$docker_compose_file)
 end
 
 def stop_service(service, compose_file=$docker_compose_file)
-  run_docker_compose_command(compose_file, "rm -fs #{service}")
+  run_docker_compose_command(compose_file, "down #{service}")
 end
 
 def kill_service(service, compose_file=$docker_compose_file)
