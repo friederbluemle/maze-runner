@@ -9,6 +9,9 @@ class AppAutomateDriver < Appium::Driver
   #   @return [String] The device, from the list of device capabilities, used for this test
   attr_reader :device_type
 
+  # @!attribute [rw] capabilities
+  #   @return [Hash] A hash of default capabilities 
+
   # The App upload uri for BrowserStack App Automate
   BROWSER_STACK_APP_UPLOAD_URI = "https://api-cloud.browserstack.com/app-automate/upload"
 
@@ -30,7 +33,7 @@ class AppAutomateDriver < Appium::Driver
       'browserstack.console': 'errors',
       'browserstack.localIdentifier': local_id,
       'browserstack.local': 'true',
-      'browserstack.networkLogs': 'true',
+      # 'browserstack.networkLogs': 'true',
       'autoAcceptAlerts': 'true',
       'app' => app_url
     }
