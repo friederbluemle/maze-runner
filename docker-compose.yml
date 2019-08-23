@@ -10,6 +10,20 @@ services:
       context: .
       target: cli
 
+  symbolicator:
+    build:
+      context: symbolicator
+      args:
+        GIT_USERNAME:
+        GIT_TOKEN:
+    environment:
+      DSYMS_LOCATION:
+      APP_NAME:
+    volumes:
+      - ./dSYMs:/app/dSYMs
+    ports:
+      - "62222:3000"
+
   browserstack-app-automate:
     build:
       context: test/fixtures/browserstack-app
