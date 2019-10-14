@@ -107,7 +107,13 @@ class AppAutomateDriver < Appium::Driver
 
   def start_local_tunnel
     status = nil
-    Open3.popen2("/BrowserStackLocal -d start --key #{@access_key} --local-identifier #{@local_id} --force-local") do |stdin, stdout, wait|
+    start_command = "/BrowserStackLocal -d start --key #{@access_key} --local-identifier #{@local_id} --force-local"
+    if ENV["VERBOSE"]
+      start_command += " --verbose 2"
+    elsif ENV["DEBUG"]
+      start_command += " --verbose 3"
+    end
+    Open3.popen2(start_command) do |stdin, stdout, wait|
       status = wait.value
     end
     status
